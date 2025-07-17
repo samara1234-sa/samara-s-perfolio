@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=TikTok+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=TikTok+Sans:wght@400;500;700&display=swap');
 
 /* General Styles */
 body {
@@ -35,7 +35,8 @@ img {
 /* Header Styles */
 .site-header {
     background-color: #fff;
-    padding: 32px 0 16px 0;
+    padding-top: 32px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
@@ -142,30 +143,81 @@ img {
 }
 
 .hero-title {
-    font-size: 3em;
+    font-size: 20px;
     color: #333;
-    margin-bottom: 0.2em;
-    font-weight: 700;
+    margin-bottom: 12px;
+    font-weight: 400; /* normal */
 }
 
 .hero-subtitle {
-    font-size: 1.5em;
-    color: #5165F9; /* Theme color for subtitle */
-    margin-bottom: 0.8em;
-    font-weight: 500;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5em; /* This can be adjusted if needed */
+    color: #5165F9;
+    margin-bottom: 12px;
+    font-weight: 400;
 }
 
 .hero-description {
-    font-size: 1.1em;
+    font-size: 16px;
     color: #555;
     max-width: 700px;
-    margin: 0 auto 1.5em auto;
+    margin: 0 auto 24px; /* Keep horizontal centering and add bottom margin */
     line-height: 1.6;
 }
 
-.hero-button {
-    padding: 12px 30px;
-    font-size: 1.1em;
+/* Gooey Button Styles for Hero Section */
+.hero-button-wrapper {
+    filter: url('#goo');
+    /* padding-top is no longer needed as margin is on the element above */
+}
+
+.hero-gooey-button {
+    display: inline-block;
+    text-align: center;
+    background: #5165F9; /* Main theme color */
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold as requested */
+    padding: 1.18em 1.32em 1.03em;
+    line-height: 1;
+    border-radius: 1em;
+    position: relative;
+    text-decoration: none;
+    font-size: 1rem; /* Adjust base size if needed */
+    transition: all 0.3s ease; /* Smooth transition for color changes */
+}
+
+.hero-gooey-button:before,
+.hero-gooey-button:after {
+    width: 3.5em; /* Adjusted size for effect */
+    height: 2.5em; /* Adjusted size for effect */
+    position: absolute;
+    content: "";
+    display: inline-block;
+    background: #5165F9; /* Must match button color */
+    border-radius: 50%;
+    transition: transform 0.6s ease; /* Slower transition for a more 'gooey' feel */
+    transform: scale(0);
+    z-index: -1;
+}
+
+.hero-gooey-button:before {
+    top: -25%;
+    left: 20%;
+}
+
+.hero-gooey-button:after {
+    bottom: -25%;
+    right: 20%;
+}
+
+.hero-gooey-button:hover {
+    text-decoration: none;
+    color: #fff; /* Ensure text color stays white on hover */
+}
+
+.hero-gooey-button:hover:before,
+.hero-gooey-button:hover:after {
+    transform: none; /* Bring the circles to full size */
 }
 
 /* Welcome Navigation Section */
