@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=TikTok+Sans:wght@400;500;700&display=swap');
 
 /* General Styles */
 body {
-    font-family: 'Inter', sans-serif; /* Modern sans-serif font */
+    font-family: 'TikTok Sans', 'Noto Sans TC', sans-serif; /* English: TikTok Sans, Chinese: Noto Sans TC */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -53,15 +53,24 @@ img {
     align-items: center;
 }
 
-.logo a {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
+.nav-left, .nav-right {
+    flex: 1;
 }
 
-.logo a:hover {
-    color: #5165F9;
+.logo {
+    /* The logo now acts as the center element */
+    flex-shrink: 0; /* Prevent the logo from shrinking */
+}
+
+.logo img {
+    display: block; /* Remove any extra space below the image */
+    width: 91px;
+    height: 49px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
 }
 
 .main-nav ul {
@@ -69,25 +78,35 @@ img {
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
+}
+
+.main-nav.nav-left {
+    justify-content: flex-start;
+}
+
+.main-nav.nav-right {
+    justify-content: flex-end;
 }
 
 .main-nav li {
-    margin-left: 25px;
+    margin: 0 15px; /* Symmetrical margin for spacing */
 }
 
 .main-nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    font-size: 1em;
-    padding-bottom: 5px;
+    font-size: 16px; /* As requested */
+    padding: 10px 5px;
+    border-bottom: 2px solid transparent; /* Placeholder for hover effect */
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
 .main-nav a:hover,
-.main-nav a.active { /* We can add 'active' class with JS later */
+.main-nav a.active {
     color: #5165F9;
-    border-bottom: 2px solid #5165F9;
+    border-bottom-color: #5165F9;
 }
 
 /* Hamburger Menu for Mobile */
@@ -641,52 +660,53 @@ img {
 
 /* Mobile (e.g., up to 768px) - Major layout changes often happen here */
 @media (max-width: 768px) {
-    /* Mobile Navigation */
-    .main-nav ul { /* Hide desktop navigation links */
-        display: none;
+    .header-container {
+        /* On mobile, logo moves to left, hamburger to right */
+        justify-content: space-between;
     }
-
-    .main-nav.nav-open ul { /* Styles for the list within the opened mobile nav */
+    .logo {
+        order: -1; /* Move logo to the far left */
+        flex: 0 1 auto; /* Reset flex properties for logo */
+    }
+    .nav-toggle {
+        display: block; /* Show hamburger */
+    }
+    .main-nav {
+        display: none; /* Hide desktop nav links */
+        order: 1; /* Ensure nav-toggle is after logo */
+        width: 100%; /* Full width for the opened menu */
+    }
+    .main-nav.nav-open {
         display: flex;
+        flex-direction: column; /* Stack nav sections vertically */
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 10px 0;
+        border-top: 1px solid #eee;
+        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+    }
+    .main-nav.nav-open .nav-left ul,
+    .main-nav.nav-open .nav-right ul {
         flex-direction: column;
-        align-items: center; /* Center nav items */
         width: 100%;
     }
-
-    .main-nav.nav-open li { /* Mobile navigation list items */
+    .main-nav.nav-open li {
         width: 100%;
-        margin-left: 0; /* Remove left margin from desktop style */
         text-align: center;
+        margin: 0;
     }
     .main-nav.nav-open a {
-        padding: 12px 15px; /* Comfortable tap targets */
-        border-bottom: 1px solid #f0f0f0; /* Separator for mobile nav items */
-        width: 100%; /* Make link take full width for easier tapping */
-        box-sizing: border-box;
+        display: block;
+        padding: 12px 15px;
+        border-bottom: 1px solid #f0f0f0;
     }
     .main-nav.nav-open a:hover,
     .main-nav.nav-open a.active {
-        background-color: #f9f9f9; /* Slight background change on hover/active */
+        background-color: #f9f9f9;
         border-bottom-color: #5165F9;
-    }
-
-    .nav-toggle { /* Show Hamburger button */
-        display: block;
-    }
-
-    .main-nav { /* The navigation <nav> container itself */
-        display: none; /* Hidden by default on mobile, shown by .nav-open */
-    }
-    .main-nav.nav-open { /* When mobile nav is active/open */
-        display: flex; /* Make it visible */
-        position: absolute; /* Position it relative to the header */
-        top: 100%; /* Place it right below the header */
-        left: 0;
-        right: 0; /* Span full width */
-        background-color: #fff; /* White background */
-        box-shadow: 0 3px 5px rgba(0,0,0,0.1); /* Subtle shadow */
-        border-top: 1px solid #eee; /* Separator from header */
-        padding: 10px 0; /* Padding for the dropdown area */
     }
 
     /* Typography Adjustments for Mobile */

@@ -29,13 +29,23 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.classList.toggle('active');   // Animate hamburger icon
     }
 
+    // --- Function for Mobile Navigation Toggle ---
+    function toggleMobileNav() {
+        // We now have multiple .main-nav elements, so we select them all
+        const navElements = document.querySelectorAll('.main-nav');
+        navElements.forEach(nav => {
+            nav.classList.toggle('nav-open');
+        });
+        navToggle.classList.toggle('active');   // Animate hamburger icon
+    }
+
     // --- Function to Set Active Navigation Link ---
     function setActiveNavLink() {
-        const navLinks = mainNav ? mainNav.querySelectorAll('a') : [];
-        if (navLinks.length === 0) return; // No nav links found
+        const navLinks = document.querySelectorAll('.main-nav a'); // Select all nav links
+        if (navLinks.length === 0) return;
 
         let currentPage = window.location.pathname.split('/').pop();
-        if (currentPage === '' || currentPage === 'index.html') { // Consistent handling for root/index
+        if (currentPage === '' || currentPage === 'index.html') {
             currentPage = 'index.html';
         }
 
@@ -44,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (linkPage === currentPage) {
                 link.classList.add('active');
             } else {
-                link.classList.remove('active'); // Ensure only current page is active
+                link.classList.remove('active');
             }
         });
     }
@@ -54,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', handleHeaderScroll);
     }
 
-    if (navToggle) { // Check if navToggle exists before adding listener
+    if (navToggle) {
         navToggle.addEventListener('click', toggleMobileNav);
     }
 
