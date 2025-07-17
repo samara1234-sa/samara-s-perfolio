@@ -138,8 +138,8 @@ img {
 /* Placeholder for page-specific styles */
 /* Home Page Styles */
 .hero-section {
-    padding: 60px 0;
-    background-color: #f9f9f9; /* Light background for hero */
+    padding: 20px 0;
+    /* background-color: #f9f9f9; */ /* Removed as per request */
 }
 
 .hero-title {
@@ -153,8 +153,10 @@ img {
     font-family: 'Crimson Text', serif;
     font-size: 44px;
     color: #5165F9;
+    margin-top: 12px;
     margin-bottom: 8px;
     font-weight: 400;
+    line-height: 1.1;
 }
 
 .hero-description {
