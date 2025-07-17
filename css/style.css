@@ -237,58 +237,53 @@ img {
 
 /* Welcome Navigation Section */
 .welcome-nav-section {
-    padding: 40px 0;
+    margin-top: 20px;
 }
 
-.section-title {
-    font-size: 2.2em;
+.welcome-gif {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px; /* Centered, with 20px bottom margin */
+    background-color: #f0f0f0; /* Placeholder background */
+}
+
+.welcome-nav-section .section-title {
+    font-size: 24px;
     color: #333;
-    margin-bottom: 40px;
     font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 .nav-cards-container {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
+    justify-content: center; /* Center the cards within the container */
+    gap: 10px;
+    padding: 10px 0; /* Add some padding for visual balance */
+    width: 100%;
+    overflow-x: auto;
+    /* Hide scrollbar for a cleaner look */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.nav-cards-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
 }
 
 .nav-card {
-    display: block;
-    width: calc(33.333% - 20px); /* Adjust for gap */
-    min-width: 280px;
-    text-align: center;
-    color: #333;
-    text-decoration: none;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.nav-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-    text-decoration: none;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    height: 400px;
+    background-color: transparent; /* No background */
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 .nav-card-image {
-    width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Cover the area, might crop */
-    border-radius: 6px;
-    margin-bottom: 15px;
-    background-color: #eee; /* Placeholder background */
-}
-
-.nav-card-title {
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #5165F9;
+    width: auto; /* Let width be determined by height and aspect ratio */
+    height: 100%; /* Image height fills the card height */
+    object-fit: contain; /* Ensure the whole image is visible without cropping */
 }
 
 /* Latest Works Section */
@@ -598,11 +593,10 @@ img {
 
     /* Layout Adjustments for Home Page Cards */
     .nav-cards-container {
-        justify-content: space-evenly;
+        /* On tablet, we might still want horizontal scroll if it gets tight */
     }
     .nav-card {
-        width: calc(50% - 20px); /* Two cards per row */
-        margin-bottom: 20px; /* Ensure spacing between rows */
+        /* No change needed, flexbox handles it */
     }
 
     /* Grid Adjustments for Portfolio/Works/Skills */
@@ -623,6 +617,22 @@ img {
 
 /* Mobile (e.g., up to 768px) */
 @media (max-width: 768px) {
+    /* Welcome Nav Section on Mobile */
+    .welcome-nav-section .section-title {
+        font-size: 20px; /* Adjust title size for mobile */
+    }
+    .nav-cards-container {
+        flex-wrap: wrap; /* Allow cards to wrap */
+        overflow-x: hidden; /* Hide horizontal scroll on mobile */
+    }
+    .nav-card {
+        height: 300px; /* Adjust height for mobile */
+        width: calc(50% - 5px); /* Two cards per row, accounting for gap */
+    }
+    .nav-card:nth-child(5) {
+        display: none; /* Hide the 5th card on mobile */
+    }
+
     /* Typography Adjustments for Mobile */
     .hero-title {
         font-size: 2em;
@@ -633,15 +643,6 @@ img {
     .hero-description {
         font-size: 1em;
         padding: 0 10px; /* Ensure text doesn't touch edges */
-    }
-
-    /* Home Page Card Layout for Mobile */
-    .nav-card {
-        width: calc(100% - 20px); /* Full width cards */
-        margin-bottom: 20px;
-    }
-    .nav-card:last-child{
-        margin-bottom: 0;
     }
 
     /* Grid Layouts for Mobile (Portfolio, Latest Works, Skills) */
@@ -700,6 +701,10 @@ img {
     .main-nav {
         /* On very small screens, the nav might need to wrap */
         transform: scale(0.9); /* Scale down the whole nav block */
+    }
+
+    .nav-card {
+        height: 250px; /* Further adjust card height */
     }
 
     /* Typography Fine-tuning for Small Screens */
