@@ -161,8 +161,19 @@ img {
     font-size: 16px;
     color: #555;
     max-width: 700px;
-    margin: 0 auto 24px; /* Keep horizontal centering and add bottom margin */
+    margin: 0 auto; /* Remove bottom margin, spacing will be handled by the divider */
     line-height: 1.6;
+}
+
+.dashed-divider {
+    width: 500px;
+    max-width: 90%;
+    height: 1px;
+    background-image: linear-gradient(to right, #EAEAEA 50%, transparent 50%);
+    background-position: 0 0;
+    background-size: 16px 1px; /* 8px dash + 8px gap */
+    background-repeat: repeat-x;
+    margin: 24px auto 32px; /* top, horizontal, bottom */
 }
 
 /* Gooey Button Styles for Hero Section */
