@@ -35,7 +35,7 @@ img {
 /* Header Styles */
 .site-header {
     background-color: #fff;
-    padding: 1em 0;
+    padding: 32px 0 16px 0;
     border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
@@ -49,48 +49,14 @@ img {
 
 .header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Horizontally center the nav container */
     align-items: center;
-}
-
-.nav-left, .nav-right {
-    flex: 1;
-}
-
-.logo {
-    /* The logo now acts as the center element */
-    flex-shrink: 0; /* Prevent the logo from shrinking */
-}
-
-.logo img {
-    display: block; /* Remove any extra space below the image */
-    width: 91px;
-    height: 49px;
 }
 
 .main-nav {
     display: flex;
     align-items: center;
-}
-
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-.main-nav.nav-left {
-    justify-content: flex-start;
-}
-
-.main-nav.nav-right {
-    justify-content: flex-end;
-}
-
-.main-nav li {
-    margin: 0 15px; /* Symmetrical margin for spacing */
+    gap: 12px; /* Set the gap between nav items */
 }
 
 .main-nav a {
@@ -101,86 +67,25 @@ img {
     padding: 10px 5px;
     border-bottom: 2px solid transparent; /* Placeholder for hover effect */
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
+    white-space: nowrap; /* Prevent nav links from wrapping */
 }
 
-.main-nav a:hover,
-.main-nav a.active {
+.main-nav a.logo-link {
+    /* Special styles for the logo link to remove padding/border effects */
+    padding: 0;
+    border-bottom: none;
+}
+
+.main-nav a.logo-link img {
+    display: block; /* Ensure image behaves correctly */
+    width: 91px;
+    height: 49px;
+}
+
+.main-nav a:not(.logo-link):hover,
+.main-nav a:not(.logo-link).active {
     color: #5165F9;
     border-bottom-color: #5165F9;
-}
-
-/* Hamburger Menu for Mobile */
-.nav-toggle {
-    display: none; /* Hidden by default, shown in media query */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
-.hamburger {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    position: relative;
-    transition: background-color 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #333;
-    left: 0;
-    transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
-}
-
-.hamburger::before {
-    top: -8px;
-}
-
-.hamburger::after {
-    bottom: -8px;
-}
-
-/* Styles for when mobile nav is open (added via JS) */
-.main-nav.nav-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%; /* Position below the header */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 10px 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.main-nav.nav-open li {
-    margin: 10px 0;
-    text-align: center;
-}
-
-.main-nav.nav-open a {
-    display: block;
-    padding: 10px;
-}
-
-.nav-toggle.active .hamburger {
-    background-color: transparent; /* Middle line disappears */
-}
-.nav-toggle.active .hamburger::before {
-    transform: rotate(45deg);
-    top: 0;
-}
-.nav-toggle.active .hamburger::after {
-    transform: rotate(-45deg);
-    bottom: 0;
 }
 
 
@@ -464,16 +369,12 @@ img {
 
 /* Learn Page Styles */
 /* Most styles are inherited from .portfolio-grid and .portfolio-item */
-/* Add .learn-item if specific styling is needed for learn page items, */
-/* or .learn-grid for the container. For now, we reuse portfolio styles. */
-
 .learn-grid .portfolio-item-image {
-    /* Example of a specific adjustment if needed, e.g., different aspect ratio */
-    /* height: 240px; */
+    /* Example of a specific adjustment if needed */
 }
 
 .learn-grid .portfolio-item-title {
-    /* font-size: 1.5em; */ /* Example adjustment */
+    /* Example adjustment */
 }
 
 /* About Page Styles */
@@ -610,8 +511,6 @@ img {
 }
 
 
-/* Responsive Design */
-
 /* ==========================================================================
    Responsive Design - Breakpoints order: Larger to Smaller
    ========================================================================== */
@@ -638,9 +537,6 @@ img {
         width: calc(50% - 20px); /* Two cards per row */
         margin-bottom: 20px; /* Ensure spacing between rows */
     }
-    .nav-card:last-child {
-         /* No specific adjustment needed if they wrap correctly */
-    }
 
     /* Grid Adjustments for Portfolio/Works/Skills */
     .portfolio-grid, .latest-works-grid, .skills-grid {
@@ -658,57 +554,8 @@ img {
 }
 
 
-/* Mobile (e.g., up to 768px) - Major layout changes often happen here */
+/* Mobile (e.g., up to 768px) */
 @media (max-width: 768px) {
-    .header-container {
-        /* On mobile, logo moves to left, hamburger to right */
-        justify-content: space-between;
-    }
-    .logo {
-        order: -1; /* Move logo to the far left */
-        flex: 0 1 auto; /* Reset flex properties for logo */
-    }
-    .nav-toggle {
-        display: block; /* Show hamburger */
-    }
-    .main-nav {
-        display: none; /* Hide desktop nav links */
-        order: 1; /* Ensure nav-toggle is after logo */
-        width: 100%; /* Full width for the opened menu */
-    }
-    .main-nav.nav-open {
-        display: flex;
-        flex-direction: column; /* Stack nav sections vertically */
-        position: absolute;
-        top: 100%; /* Position below the header */
-        left: 0;
-        right: 0;
-        background-color: #fff;
-        padding: 10px 0;
-        border-top: 1px solid #eee;
-        box-shadow: 0 3px 5px rgba(0,0,0,0.1);
-    }
-    .main-nav.nav-open .nav-left ul,
-    .main-nav.nav-open .nav-right ul {
-        flex-direction: column;
-        width: 100%;
-    }
-    .main-nav.nav-open li {
-        width: 100%;
-        text-align: center;
-        margin: 0;
-    }
-    .main-nav.nav-open a {
-        display: block;
-        padding: 12px 15px;
-        border-bottom: 1px solid #f0f0f0;
-    }
-    .main-nav.nav-open a:hover,
-    .main-nav.nav-open a.active {
-        background-color: #f9f9f9;
-        border-bottom-color: #5165F9;
-    }
-
     /* Typography Adjustments for Mobile */
     .hero-title {
         font-size: 2em;
@@ -723,11 +570,11 @@ img {
 
     /* Home Page Card Layout for Mobile */
     .nav-card {
-        width: calc(100% - 20px); /* Full width cards, accounting for potential container padding */
+        width: calc(100% - 20px); /* Full width cards */
         margin-bottom: 20px;
     }
     .nav-card:last-child{
-        margin-bottom: 0; /* Remove bottom margin from the last card if it's the only one */
+        margin-bottom: 0;
     }
 
     /* Grid Layouts for Mobile (Portfolio, Latest Works, Skills) */
@@ -782,8 +629,10 @@ img {
     .container {
         width: 95%; /* Maximize screen real estate */
     }
-    .logo a {
-        font-size: 1.5em; /* Smaller logo */
+
+    .main-nav {
+        /* On very small screens, the nav might need to wrap */
+        transform: scale(0.9); /* Scale down the whole nav block */
     }
 
     /* Typography Fine-tuning for Small Screens */

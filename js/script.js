@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Cache DOM Elements ---
     const siteHeader = document.querySelector('.site-header');
-    const navToggle = document.querySelector('.nav-toggle'); // Hamburger button
-    const mainNav = document.querySelector('.main-nav');     // <nav> element containing the ul
 
     // --- Function for Header Scroll Effect ---
     function handleHeaderScroll() {
@@ -29,28 +27,27 @@ document.addEventListener('DOMContentLoaded', function() {
         navToggle.classList.toggle('active');   // Animate hamburger icon
     }
 
-    // --- Function for Mobile Navigation Toggle ---
-    function toggleMobileNav() {
-        // We now have multiple .main-nav elements, so we select them all
-        const navElements = document.querySelectorAll('.main-nav');
-        navElements.forEach(nav => {
-            nav.classList.toggle('nav-open');
-        });
-        navToggle.classList.toggle('active');   // Animate hamburger icon
-    }
-
     // --- Function to Set Active Navigation Link ---
     function setActiveNavLink() {
-        const navLinks = document.querySelectorAll('.main-nav a'); // Select all nav links
+        const navLinks = document.querySelectorAll('.main-nav a:not(.logo-link)'); // Select all nav links, excluding the logo
         if (navLinks.length === 0) return;
 
         let currentPage = window.location.pathname.split('/').pop();
-        if (currentPage === '' || currentPage === 'index.html') {
+        // Treat both no-file path and index.html as the home page for highlighting
+        if (currentPage === '') {
             currentPage = 'index.html';
         }
 
         navLinks.forEach(link => {
             const linkPage = link.getAttribute('href').split('/').pop();
+
+            // Special handling for the 'My Work' link on the home page.
+            // If we are on index.html, no link should be active.
+            if (currentPage === 'index.html') {
+                 link.classList.remove('active');
+                 return; // Exit the loop for this link
+            }
+
             if (linkPage === currentPage) {
                 link.classList.add('active');
             } else {
@@ -62,10 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Attach Event Listeners ---
     if (siteHeader) {
         window.addEventListener('scroll', handleHeaderScroll);
-    }
-
-    if (navToggle) {
-        navToggle.addEventListener('click', toggleMobileNav);
     }
 
     // --- Initialize Functions ---
