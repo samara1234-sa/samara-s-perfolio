@@ -35,8 +35,8 @@ img {
 /* Header Styles */
 .site-header {
     background-color: #fff;
-    padding-top: 32px;
-    padding-bottom: 16px;
+    padding-top: 0;
+    padding-bottom: 0;
     /* border-bottom: 1px solid #f0f0f0; */ /* Removed as per request */
     position: sticky;
     top: 0;
@@ -146,8 +146,8 @@ img {
     position: relative;
     width: 50px;
     height: 50px;
-    margin: 0 auto 20px; /* top is handled by section padding, bottom is 20px */
-    cursor: pointer; /* Indicates it's interactive */
+    margin: 0 auto 20px;
+    cursor: pointer;
 }
 
 .hero-title {
@@ -172,7 +172,7 @@ img {
     font-size: 16px;
     color: #555;
     max-width: 700px;
-    margin: 0 auto 24px; /* Set bottom margin to create space for the divider */
+    margin: 0 auto 24px;
     line-height: 1.6;
 }
 
@@ -206,7 +206,7 @@ img {
     background-position: 0 0;
     background-size: 16px 1px; /* 8px dash + 8px gap */
     background-repeat: repeat-x;
-    margin: 0 auto 32px; /* Top margin is now handled by .hero-description */
+    margin: 0 auto 32px;
 }
 
 /* Gooey Button Styles for Hero Section */
