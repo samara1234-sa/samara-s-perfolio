@@ -142,10 +142,18 @@ img {
     /* background-color: #f9f9f9; */ /* Removed as per request */
 }
 
+.hero-logo-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px; /* top is handled by section padding, bottom is 20px */
+    cursor: pointer; /* Indicates it's interactive */
+}
+
 .hero-title {
     font-size: 20px;
     color: #333;
-    margin-top: 0; /* Prevent margin collapse */
+    margin-top: 0;
     margin-bottom: 12px;
     font-weight: 400; /* normal */
 }
@@ -164,16 +172,8 @@ img {
     font-size: 16px;
     color: #555;
     max-width: 700px;
-    margin: 0 auto; /* Remove bottom margin, spacing will be handled by the divider */
+    margin: 0 auto 24px; /* Set bottom margin to create space for the divider */
     line-height: 1.6;
-}
-
-.hero-logo-container {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    margin: 24px auto 20px; /* top, horizontal, bottom */
-    cursor: pointer; /* Indicates it's interactive */
 }
 
 .hero-logo-container .logo-static,
@@ -206,7 +206,7 @@ img {
     background-position: 0 0;
     background-size: 16px 1px; /* 8px dash + 8px gap */
     background-repeat: repeat-x;
-    margin: 0 auto 32px; /* top is handled by logo container's margin-bottom */
+    margin: 0 auto 32px; /* Top margin is now handled by .hero-description */
 }
 
 /* Gooey Button Styles for Hero Section */
