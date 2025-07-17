@@ -284,6 +284,7 @@ img {
     width: auto; /* Let width be determined by height and aspect ratio */
     height: 100%; /* Image height fills the card height */
     object-fit: contain; /* Ensure the whole image is visible without cropping */
+    border-radius: 16px;
 }
 
 /* Latest Works Section */
